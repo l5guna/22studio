@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>22 Studio</title>
 
 <style>
@@ -25,7 +26,7 @@ header {
 }
 
 .container {
-    padding: 40px;
+    padding: 40px 20px;
 }
 
 .card {
@@ -34,6 +35,7 @@ header {
     padding: 20px;
     border-radius: 15px;
     width: 300px;
+    max-width: 90%;
     box-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
 
@@ -60,8 +62,7 @@ footer {
 /* ЗАСТАВКА */
 #splash {
     position: fixed;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: black;
     display: flex;
     justify-content: center;
@@ -79,6 +80,7 @@ footer {
 
 #logo {
     width: 200px;
+    max-width: 70vw;
     opacity: 0;
     animation: logoFade 3s forwards;
 }
@@ -103,7 +105,7 @@ footer {
     margin: 40px 0;
 }
 
-/* BEFORE/AFTER */
+/* BEFORE / AFTER */
 .compare-container {
     position: relative;
     width: 100%;
@@ -129,7 +131,6 @@ footer {
     -webkit-user-drag: none;
 }
 
-/* верхняя картинка, которая мягко появляется */
 .compare-overlay {
     position: absolute;
     top: 0;
@@ -145,7 +146,7 @@ footer {
     object-fit: cover;
 }
 
-/* мягкая светящаяся полоса перехода */
+/* мягкая полоса */
 .compare-divider {
     position: absolute;
     top: 0;
@@ -165,7 +166,6 @@ footer {
     mix-blend-mode: screen;
 }
 
-/* сама ручка */
 .compare-slider {
     position: absolute;
     top: 0;
@@ -192,7 +192,7 @@ footer {
     box-shadow: 0 0 12px rgba(255,255,255,0.8);
 }
 
-/* бейджи как в видео */
+/* подписи */
 .mode-badge {
     position: absolute;
     top: 16px;
@@ -217,17 +217,48 @@ footer {
     background: linear-gradient(135deg, #53d400 0%, #3cab00 100%);
 }
 
+/* ВИДЕО */
+.video-title {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+.video-container {
+    margin: 0 auto 40px auto;
+    max-width: 900px;
+    width: 100%;
+}
+
+.video-container video {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    background: black;
+}
+
 /* адаптив */
 @media (max-width: 900px) {
     .grid {
         grid-template-columns: 1fr;
     }
+
+    header {
+        font-size: 22px;
+        flex-direction: column;
+    }
+
+    .video-title {
+        font-size: 26px;
+    }
 }
 </style>
 </head>
 
-<body onclick="document.getElementById('intro-sound').play()">
+<body>
 
+<!-- ЗАСТАВКА -->
 <div id="splash">
     <div>
         <p id="present-text">22 Studio presents</p>
@@ -315,6 +346,15 @@ footer {
         <p>✔ Сделано с душой</p>
         <p>✔ Витя будет в шоке 😄</p>
     </div>
+
+    <h2 class="video-title">Трейлер</h2>
+
+    <div class="video-container">
+        <video controls>
+            <source src="trailer.mp4" type="video/mp4">
+            Твой браузер не поддерживает видео.
+        </video>
+    </div>
 </div>
 
 <footer>
@@ -326,9 +366,15 @@ document.addEventListener("dragstart", e => e.preventDefault());
 
 window.onload = () => {
     const sound = document.getElementById("intro-sound");
+    const splash = document.getElementById("splash");
+
+    sound.currentTime = 0;
     sound.play().catch(() => {});
+
     setTimeout(() => {
-        document.getElementById("splash").style.display = "none";
+        sound.pause();
+        sound.currentTime = 0;
+        splash.style.display = "none";
     }, 4000);
 };
 
@@ -367,7 +413,6 @@ document.querySelectorAll(".compare-container").forEach(container => {
         updateSlider(e.clientX);
     });
 
-    /* поддержка телефона */
     container.addEventListener("touchstart", (e) => {
         updateSlider(e.touches[0].clientX);
     }, { passive: true });
