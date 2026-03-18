@@ -1,191 +1,306 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>22 Studio</title>
+<meta charset="UTF-8">
+<title>22 Studio</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0f0f0f;
-            color: white;
-            text-align: center;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: white;
+    text-align: center;
+}
 
-        header {
-            background: #1f1f1f;
-            padding: 20px;
-            font-size: 28px;
-            font-weight: bold;
-            letter-spacing: 2px;
+header {
+    background: #1f1f1f;
+    padding: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
+.container {
+    padding: 40px;
+}
 
-        .container {
-            padding: 40px;
-        }
+.card {
+    background: #1c1c1c;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
 
-        .card {
-            background: #1c1c1c;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 15px;
-            width: 300px;
-            box-shadow: 0 0 10px rgba(255,255,255,0.1);
-        }
+button {
+    background: #ff0055;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-        button {
-            background: #ff0055;
-            border: none;
-            padding: 10px 20px;
-            color: white;
-            font-size: 16px;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+button:hover {
+    background: #ff3377;
+}
 
-        button:hover {
-            background: #ff3377;
-        }
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background: #1f1f1f;
+}
 
-        footer {
-            margin-top: 40px;
-            padding: 20px;
-            background: #1f1f1f;
-            font-size: 14px;
-        }
+/* ЗАСТАВКА */
+#splash {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
 
-        /* 🎬 ЗАСТАВКА */
-        #splash {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
+#present-text {
+    opacity: 0;
+    animation: textFade 2s forwards;
+    letter-spacing: 3px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
 
-        .splash-content {
-            text-align: center;
-        }
+#logo {
+    width: 200px;
+    opacity: 0;
+    animation: logoFade 3s forwards;
+}
 
-        #present-text {
-            font-size: 20px;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: textFade 2s ease forwards;
-        }
+@keyframes textFade {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
 
-        #logo {
-            width: 200px;
-            opacity: 0;
-            animation: logoFade 3s ease forwards;
-        }
+@keyframes logoFade {
+    0% { opacity: 0; transform: scale(0.8); }
+    30% { opacity: 1; }
+    100% { opacity: 0; transform: scale(1.2); }
+}
 
-        @keyframes textFade {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
-        }
+/* СЕТКА 2x2 */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 40px 0;
+}
 
-        @keyframes logoFade {
-            0% { opacity: 0; transform: scale(0.8); }
-            30% { opacity: 1; transform: scale(1); }
-            80% { opacity: 1; }
-            100% { opacity: 0; transform: scale(1.2); }
-        }
+/* BEFORE/AFTER */
+.compare-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    background: #111;
+    box-shadow: 0 0 20px rgba(0,0,0,0.35);
+}
 
-        /* 🔥 СЛАЙДЕР */
-        .compare-container {
-            position: relative;
-            width: 500px;
-            margin: 40px auto;
-            overflow: hidden;
-            border-radius: 15px;
-        }
+.compare-container * {
+    user-select: none;
+    -webkit-user-select: none;
+}
 
-        .compare-img {
-            width: 100%;
-            display: block;
-        }
+.compare-img {
+    width: 100%;
+    display: block;
+    pointer-events: none;
+    -webkit-user-drag: none;
+}
 
-        .compare-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 50%;
-            overflow: hidden;
-        }
+/* верхняя картинка, которая мягко появляется */
+.compare-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+}
 
-        .compare-slider {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 4px;
-            height: 100%;
-            background: white;
-            cursor: ew-resize;
-        }
+.compare-overlay .compare-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-        .compare-slider::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: -8px;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            transform: translateY(-50%);
-        }
-    </style>
+/* мягкая светящаяся полоса перехода */
+.compare-divider {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 90px;
+    height: 100%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    background: linear-gradient(
+        to right,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.10) 35%,
+        rgba(255,255,255,0.60) 50%,
+        rgba(255,255,255,0.10) 65%,
+        rgba(255,255,255,0) 100%
+    );
+    mix-blend-mode: screen;
+}
+
+/* сама ручка */
+.compare-slider {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 0 10px rgba(255,255,255,0.7);
+    cursor: ew-resize;
+    z-index: 5;
+}
+
+.compare-slider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(255,255,255,0.8);
+}
+
+/* бейджи как в видео */
+.mode-badge {
+    position: absolute;
+    top: 16px;
+    z-index: 6;
+    padding: 10px 14px;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.1;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    clip-path: polygon(14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+}
+
+.mode-off {
+    left: 16px;
+    background: linear-gradient(135deg, #444 0%, #666 100%);
+}
+
+.mode-on {
+    right: 16px;
+    background: linear-gradient(135deg, #53d400 0%, #3cab00 100%);
+}
+
+/* адаптив */
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 
 <body onclick="document.getElementById('intro-sound').play()">
 
-<!-- 🎬 ЗАСТАВКА -->
 <div id="splash">
-    <div class="splash-content">
+    <div>
         <p id="present-text">22 Studio presents</p>
-        <img src="logo.png" id="logo">
+        <img src="logo.png" id="logo" alt="logo">
         <audio id="intro-sound" src="sound.mp3"></audio>
     </div>
 </div>
 
-<!-- 🎮 САЙТ -->
 <header>
-    <img src="logo.png" style="width:100px;">
-    <div>22 STUDIO 🎮</div>
+    <img src="logo.png" width="100" alt="logo">
+    22 STUDIO 🎮
 </header>
 
 <div class="container">
-
     <h1>Добро пожаловать в 22 Studio</h1>
     <p>Мы делаем лучшие (почти) игры в мире 😎</p>
 
-    <!-- 🔥 СЛАЙДЕР -->
-    <div class="compare-container" id="compare">
-        <img src="before.jpg" class="compare-img">
+    <div class="grid">
 
-        <div class="compare-overlay" id="overlay">
-            <img src="after.jpg" class="compare-img">
+        <!-- Верх слева -->
+        <div class="compare-container">
+            <img src="1.jpg" class="compare-img" alt="">
+            <div class="compare-overlay">
+                <img src="2.jpg" class="compare-img" alt="">
+            </div>
+            <div class="mode-badge mode-off">RTX<br>OFF</div>
+            <div class="mode-badge mode-on">RTX<br>ON</div>
+            <div class="compare-divider"></div>
+            <div class="compare-slider"></div>
         </div>
 
-        <div class="compare-slider" id="slider"></div>
+        <!-- Верх справа -->
+        <div class="compare-container">
+            <img src="5.jpg" class="compare-img" alt="">
+            <div class="compare-overlay">
+                <img src="6.jpg" class="compare-img" alt="">
+            </div>
+            <div class="mode-badge mode-off">RTX<br>OFF</div>
+            <div class="mode-badge mode-on">RTX<br>ON</div>
+            <div class="compare-divider"></div>
+            <div class="compare-slider"></div>
+        </div>
+
+        <!-- Низ слева -->
+        <div class="compare-container">
+            <img src="3.jpg" class="compare-img" alt="">
+            <div class="compare-overlay">
+                <img src="4.jpg" class="compare-img" alt="">
+            </div>
+            <div class="mode-badge mode-off">RTX<br>OFF</div>
+            <div class="mode-badge mode-on">RTX<br>ON</div>
+            <div class="compare-divider"></div>
+            <div class="compare-slider"></div>
+        </div>
+
+        <!-- Низ справа -->
+        <div class="compare-container">
+            <img src="7.jpg" class="compare-img" alt="">
+            <div class="compare-overlay">
+                <img src="8.jpg" class="compare-img" alt="">
+            </div>
+            <div class="mode-badge mode-off">RTX<br>OFF</div>
+            <div class="mode-badge mode-on">RTX<br>ON</div>
+            <div class="compare-divider"></div>
+            <div class="compare-slider"></div>
+        </div>
+
     </div>
 
     <div class="card">
         <h2>Наша игра</h2>
-        <button onclick="alert('Ты нашёл пасхалку 😂')">Нажми меня</button>
+        <p>Секретный проект для Вити 👀</p>
+        <button onclick="alert('Ты нашёл пасхалку 😂')">Нажми</button>
     </div>
 
     <div class="card">
@@ -196,52 +311,37 @@
 
     <div class="card">
         <h2>Факты</h2>
-        <p> Основано в 2068</p>
-        <p> Сделано с говной</p>
-        <p>1488</p>
+        <p>✔ Основано в 2026</p>
+        <p>✔ Сделано с душой</p>
+        <p>✔ Витя будет в шоке 😄</p>
     </div>
-
 </div>
 
 <footer>
-    © 2026 22 Studio. 
+    © 2026 22 Studio 😎
 </footer>
 
-<!-- ⚙️ СКРИПТ -->
 <script>
-    // 🎬 ЗАСТАВКА + ЗВУК
-    window.onload = () => {
-        const sound = document.getElementById("intro-sound");
+document.addEventListener("dragstart", e => e.preventDefault());
 
-        sound.play().catch(() => {
-            console.log("Автозвук заблокирован");
-        });
+window.onload = () => {
+    const sound = document.getElementById("intro-sound");
+    sound.play().catch(() => {});
+    setTimeout(() => {
+        document.getElementById("splash").style.display = "none";
+    }, 4000);
+};
 
-        setTimeout(() => {
-            document.getElementById("splash").style.display = "none";
-        }, 4000);
-    };
+document.querySelectorAll(".compare-container").forEach(container => {
+    const slider = container.querySelector(".compare-slider");
+    const overlay = container.querySelector(".compare-overlay");
+    const divider = container.querySelector(".compare-divider");
 
-    // 🔥 СЛАЙДЕР
-    const slider = document.getElementById("slider");
-    const overlay = document.getElementById("overlay");
-    const container = document.getElementById("compare");
+    let dragging = false;
 
-    let isDragging = false;
-
-    slider.addEventListener("mousedown", () => {
-        isDragging = true;
-    });
-
-    window.addEventListener("mouseup", () => {
-        isDragging = false;
-    });
-
-    window.addEventListener("mousemove", (e) => {
-        if (!isDragging) return;
-
+    function updateSlider(clientX) {
         const rect = container.getBoundingClientRect();
-        let x = e.clientX - rect.left;
+        let x = clientX - rect.left;
 
         if (x < 0) x = 0;
         if (x > rect.width) x = rect.width;
@@ -250,7 +350,32 @@
 
         overlay.style.width = percent + "%";
         slider.style.left = percent + "%";
+        divider.style.left = percent + "%";
+    }
+
+    slider.addEventListener("mousedown", () => dragging = true);
+
+    container.addEventListener("mousedown", (e) => {
+        dragging = true;
+        updateSlider(e.clientX);
     });
+
+    window.addEventListener("mouseup", () => dragging = false);
+
+    window.addEventListener("mousemove", (e) => {
+        if (!dragging) return;
+        updateSlider(e.clientX);
+    });
+
+    /* поддержка телефона */
+    container.addEventListener("touchstart", (e) => {
+        updateSlider(e.touches[0].clientX);
+    }, { passive: true });
+
+    container.addEventListener("touchmove", (e) => {
+        updateSlider(e.touches[0].clientX);
+    }, { passive: true });
+});
 </script>
 
 </body>
