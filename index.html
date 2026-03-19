@@ -238,6 +238,71 @@ footer {
     background: black;
 }
 
+/* БЛОК: карточки + команда студии */
+.info-team-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.info-cards-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-studio-box {
+    background: #1c1c1c;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    width: 520px;
+    max-width: 90%;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+.team-studio-box h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.team-studio-images {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.team-studio-member {
+    width: 100%;
+    max-width: 240px;
+}
+
+.team-studio-images img {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #000;
+    box-shadow: 0 0 12px rgba(0,0,0,0.35);
+}
+
+.team-studio-images img:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.team-studio-member p {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 18px;
+}
+
 /* адаптив */
 @media (max-width: 900px) {
     .grid {
@@ -251,6 +316,19 @@ footer {
 
     .video-title {
         font-size: 26px;
+    }
+
+    .team-studio-box {
+        width: 320px;
+    }
+
+    .team-studio-member {
+        width: 100%;
+        max-width: 220px;
+    }
+
+    .team-studio-images img {
+        max-width: 200px;
     }
 }
 </style>
@@ -284,8 +362,8 @@ footer {
             <div class="compare-overlay">
                 <img src="2.jpg" class="compare-img" alt="">
             </div>
-            <div class="mode-badge mode-off">RTX<br>OFF</div>
-            <div class="mode-badge mode-on">RTX<br>ON</div>
+            <div class="mode-badge mode-off">dlss5<br>OFF</div>
+            <div class="mode-badge mode-on">dlss5<br>ON</div>
             <div class="compare-divider"></div>
             <div class="compare-slider"></div>
         </div>
@@ -296,8 +374,8 @@ footer {
             <div class="compare-overlay">
                 <img src="6.jpg" class="compare-img" alt="">
             </div>
-            <div class="mode-badge mode-off">RTX<br>OFF</div>
-            <div class="mode-badge mode-on">RTX<br>ON</div>
+            <div class="mode-badge mode-off">dlss5<br>OFF</div>
+            <div class="mode-badge mode-on">dlss5<br>ON</div>
             <div class="compare-divider"></div>
             <div class="compare-slider"></div>
         </div>
@@ -328,23 +406,45 @@ footer {
 
     </div>
 
-    <div class="card">
-        <h2>Наша игра</h2>
-        <p>Секретный проект для Вити 👀</p>
-        <button onclick="alert('Ты нашёл пасхалку 😂')">Нажми</button>
-    </div>
+    <div class="info-team-wrapper">
 
-    <div class="card">
-        <h2>Команда</h2>
-        <p>Коля — гений разработки 💻</p>
-        <p>Ты — веб-мастер 🔥</p>
-    </div>
+        <div class="info-cards-column">
+            <div class="card">
+                <h2>Наша игра</h2>
+                <p>Секретный проект для Вити 👀</p>
+                <button onclick="alert('Ты нашёл пасхалку 😂')">Нажми</button>
+            </div>
 
-    <div class="card">
-        <h2>Факты</h2>
-        <p>✔ Основано в 2026</p>
-        <p>✔ Сделано с душой</p>
-        <p>✔ Витя будет в шоке 😄</p>
+            <div class="card">
+                <h2>Команда</h2>
+                <p>Коля — гений разработки 💻</p>
+                <p>Ты — веб-мастер 🔥</p>
+            </div>
+
+            <div class="card">
+                <h2>Факты</h2>
+                <p>✔ Основано в 2026</p>
+                <p>✔ Сделано с душой</p>
+                <p>✔ Витя будет в шоке 😄</p>
+            </div>
+        </div>
+
+        <div class="team-studio-box">
+            <h2>Команда студии</h2>
+
+            <div class="team-studio-images">
+                <div class="team-studio-member">
+                    <img src="team1.jpg" alt="Коля">
+                    <p>Коля</p>
+                </div>
+
+                <div class="team-studio-member">
+                    <img src="team2.jpg" alt="Ты">
+                    <p>Ты</p>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <h2 class="video-title">Трейлер</h2>
