@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -251,15 +251,15 @@ footer {
 .info-cards-column {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* три карточки по центру */
 }
 
 .team-studio-box {
     background: #1c1c1c;
-    margin: 20px auto;
+    margin: 20px 0;
     padding: 20px;
     border-radius: 15px;
-    width: 420px;
+    width: 320px;
     max-width: 90%;
     box-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
@@ -271,22 +271,30 @@ footer {
 
 .team-studio-images {
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    flex-direction: column; /* фотки сверху вниз */
+    align-items: center;
+    gap: 20px;
 }
 
 .team-studio-member {
-    width: 45%;
+    width: 100%;
+    max-width: 240px;
 }
 
 .team-studio-images img {
     width: 100%;
-    max-width: 160px;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
+    max-width: 220px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
     border-radius: 12px;
+    background: #000;
     box-shadow: 0 0 12px rgba(0,0,0,0.35);
+    transition: transform 0.3s;
+}
+
+.team-studio-images img:hover {
+    transform: scale(1.05);
 }
 
 .team-studio-member p {
@@ -310,16 +318,22 @@ footer {
         font-size: 26px;
     }
 
+    .info-team-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .team-studio-box {
-        width: 300px;
+        width: 320px;
     }
 
     .team-studio-member {
         width: 100%;
+        max-width: 220px;
     }
 
     .team-studio-images img {
-        max-width: 140px;
+        max-width: 200px;
     }
 }
 </style>
@@ -431,7 +445,7 @@ footer {
 
                 <div class="team-studio-member">
                     <img src="team2.jpg" alt="Ты">
-                    <p>Ты</p>
+                    <p>Рома</p>
                 </div>
             </div>
         </div>
