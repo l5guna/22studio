@@ -97,6 +97,139 @@ footer {
     100% { opacity: 0; transform: scale(1.2); }
 }
 
+/* ВЕРХНИЙ БЛОК: карточки + правая колонка */
+.top-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    margin: 40px 0 50px;
+    flex-wrap: wrap;
+}
+
+.info-cards-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+}
+
+/* NEW PATCH / OLD PROJECT / РОБОТНИКИ */
+.patch-box,
+.workers-box,
+.old-project-box {
+    background: #1c1c1c;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 15px;
+    width: 700px;
+    max-width: 95%;
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+.patch-box h2,
+.workers-box h2,
+.old-project-box h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 30px;
+    letter-spacing: 3px;
+    color: #ff2a2a;
+    text-shadow: 0 0 12px rgba(255, 42, 42, 0.45);
+    text-align: center;
+}
+
+.workers-box h2 {
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(255,255,255,0.15);
+}
+
+.old-project-box h2 {
+    color: #ffd54a;
+    text-shadow: 0 0 12px rgba(255, 213, 74, 0.25);
+}
+
+.patch-images,
+.workers-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.patch-images img {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 14px;
+    background: #000;
+    box-shadow: 0 0 16px rgba(0,0,0,0.45);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.workers-images img {
+    width: 100%;
+    max-width: 160px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 14px;
+    background: #000;
+    box-shadow: 0 0 16px rgba(0,0,0,0.45);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.old-project-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.old-project-image img {
+    width: 100%;
+    max-width: 520px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 14px;
+    background: #000;
+    box-shadow: 0 0 16px rgba(0,0,0,0.45);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.patch-images img:hover,
+.workers-images img:hover,
+.old-project-image img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 22px rgba(255, 42, 42, 0.18);
+}
+
+.worker-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.worker-card p {
+    margin: 0;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+}
+
+/* НИЖНИЙ БЛОК: функции до/после */
+.compare-section {
+    margin-top: 20px;
+}
+
 /* СЕТКА 2x2 */
 .grid {
     display: grid;
@@ -238,71 +371,6 @@ footer {
     background: black;
 }
 
-/* БЛОК: карточки + команда студии */
-.info-team-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 40px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-}
-
-.info-cards-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* три карточки по центру */
-}
-
-.team-studio-box {
-    background: #1c1c1c;
-    margin: 20px 0;
-    padding: 20px;
-    border-radius: 15px;
-    width: 320px;
-    max-width: 90%;
-    box-shadow: 0 0 10px rgba(255,255,255,0.1);
-}
-
-.team-studio-box h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
-}
-
-.team-studio-images {
-    display: flex;
-    flex-direction: column; /* фотки сверху вниз */
-    align-items: center;
-    gap: 20px;
-}
-
-.team-studio-member {
-    width: 100%;
-    max-width: 240px;
-}
-
-.team-studio-images img {
-    width: 100%;
-    max-width: 220px;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    object-fit: contain;
-    border-radius: 12px;
-    background: #000;
-    box-shadow: 0 0 12px rgba(0,0,0,0.35);
-    transition: transform 0.3s;
-}
-
-.team-studio-images img:hover {
-    transform: scale(1.05);
-}
-
-.team-studio-member p {
-    margin-top: 10px;
-    margin-bottom: 0;
-    font-size: 18px;
-}
-
 /* адаптив */
 @media (max-width: 900px) {
     .grid {
@@ -318,22 +386,35 @@ footer {
         font-size: 26px;
     }
 
-    .info-team-wrapper {
+    .top-section {
         flex-direction: column;
         align-items: center;
     }
 
-    .team-studio-box {
-        width: 320px;
-    }
-
-    .team-studio-member {
+    .right-column {
         width: 100%;
-        max-width: 220px;
     }
 
-    .team-studio-images img {
-        max-width: 200px;
+    .patch-box,
+    .workers-box,
+    .old-project-box {
+        width: 95%;
+    }
+
+    .patch-images,
+    .workers-images {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .patch-images img,
+    .workers-images img,
+    .old-project-image img {
+        max-width: 100%;
+    }
+
+    .workers-images img {
+        max-width: 180px;
     }
 }
 </style>
@@ -359,59 +440,8 @@ footer {
     <h1>Добро пожаловать в 22 Studio</h1>
     <p>Мы делаем лучшие (почти) игры в мире 😎</p>
 
-    <div class="grid">
-
-        <!-- Верх слева -->
-        <div class="compare-container">
-            <img src="1.jpg" class="compare-img" alt="">
-            <div class="compare-overlay">
-                <img src="2.jpg" class="compare-img" alt="">
-            </div>
-            <div class="mode-badge mode-off">dlss5<br>OFF</div>
-            <div class="mode-badge mode-on">dlss5<br>ON</div>
-            <div class="compare-divider"></div>
-            <div class="compare-slider"></div>
-        </div>
-
-        <!-- Верх справа -->
-        <div class="compare-container">
-            <img src="5.jpg" class="compare-img" alt="">
-            <div class="compare-overlay">
-                <img src="6.jpg" class="compare-img" alt="">
-            </div>
-            <div class="mode-badge mode-off">dlss5<br>OFF</div>
-            <div class="mode-badge mode-on">dlss5<br>ON</div>
-            <div class="compare-divider"></div>
-            <div class="compare-slider"></div>
-        </div>
-
-        <!-- Низ слева -->
-        <div class="compare-container">
-            <img src="3.jpg" class="compare-img" alt="">
-            <div class="compare-overlay">
-                <img src="4.jpg" class="compare-img" alt="">
-            </div>
-            <div class="mode-badge mode-off">RTX<br>OFF</div>
-            <div class="mode-badge mode-on">RTX<br>ON</div>
-            <div class="compare-divider"></div>
-            <div class="compare-slider"></div>
-        </div>
-
-        <!-- Низ справа -->
-        <div class="compare-container">
-            <img src="7.jpg" class="compare-img" alt="">
-            <div class="compare-overlay">
-                <img src="8.jpg" class="compare-img" alt="">
-            </div>
-            <div class="mode-badge mode-off">RTX<br>OFF</div>
-            <div class="mode-badge mode-on">RTX<br>ON</div>
-            <div class="compare-divider"></div>
-            <div class="compare-slider"></div>
-        </div>
-
-    </div>
-
-    <div class="info-team-wrapper">
+    <!-- ВВЕРХУ: три колонки + справа NEW PATCH и OLD PROJECT -->
+    <div class="top-section">
 
         <div class="info-cards-column">
             <div class="card">
@@ -434,22 +464,78 @@ footer {
             </div>
         </div>
 
-        <div class="team-studio-box">
-            <h2>Команда студии</h2>
-
-            <div class="team-studio-images">
-                <div class="team-studio-member">
-                    <img src="team1.jpg" alt="Коля">
-                    <p>Коля</p>
+        <div class="right-column">
+            <div class="patch-box">
+                <h2>NEW PATCH</h2>
+                <div class="patch-images">
+                    <img src="photo_2026-03-20_17-29-03.jpg" alt="Patch 2.00 сюжетная линия">
+                    <img src="photo_2026-03-20_17-29-04.jpg" alt="Patch 2.00 новый контент">
                 </div>
+            </div>
 
-                <div class="team-studio-member">
-                    <img src="team2.jpg" alt="Ты">
-                    <p>Рома</p>
+            <div class="old-project-box">
+                <h2>OLD PROJECT</h2>
+                <div class="old-project-image">
+                    <img src="photo_2026-03-20_20-07-55.jpg" alt="Old Project">
                 </div>
             </div>
         </div>
 
+    </div>
+
+    <!-- НИЖЕ: блоки до/после -->
+    <div class="compare-section">
+        <div class="grid">
+
+            <!-- Верх слева -->
+            <div class="compare-container">
+                <img src="1.jpg" class="compare-img" alt="">
+                <div class="compare-overlay">
+                    <img src="2.jpg" class="compare-img" alt="">
+                </div>
+                <div class="mode-badge mode-off">dlss5<br>OFF</div>
+                <div class="mode-badge mode-on">dlss5<br>ON</div>
+                <div class="compare-divider"></div>
+                <div class="compare-slider"></div>
+            </div>
+
+            <!-- Верх справа -->
+            <div class="compare-container">
+                <img src="5.jpg" class="compare-img" alt="">
+                <div class="compare-overlay">
+                    <img src="6.jpg" class="compare-img" alt="">
+                </div>
+                <div class="mode-badge mode-off">dlss5<br>OFF</div>
+                <div class="mode-badge mode-on">dlss5<br>ON</div>
+                <div class="compare-divider"></div>
+                <div class="compare-slider"></div>
+            </div>
+
+            <!-- Низ слева -->
+            <div class="compare-container">
+                <img src="3.jpg" class="compare-img" alt="">
+                <div class="compare-overlay">
+                    <img src="4.jpg" class="compare-img" alt="">
+                </div>
+                <div class="mode-badge mode-off">RTX<br>OFF</div>
+                <div class="mode-badge mode-on">RTX<br>ON</div>
+                <div class="compare-divider"></div>
+                <div class="compare-slider"></div>
+            </div>
+
+            <!-- Низ справа -->
+            <div class="compare-container">
+                <img src="7.jpg" class="compare-img" alt="">
+                <div class="compare-overlay">
+                    <img src="8.jpg" class="compare-img" alt="">
+                </div>
+                <div class="mode-badge mode-off">RTX<br>OFF</div>
+                <div class="mode-badge mode-on">RTX<br>ON</div>
+                <div class="compare-divider"></div>
+                <div class="compare-slider"></div>
+            </div>
+
+        </div>
     </div>
 
     <h2 class="video-title">Трейлер</h2>
@@ -459,6 +545,22 @@ footer {
             <source src="trailer.mp4" type="video/mp4">
             Твой браузер не поддерживает видео.
         </video>
+    </div>
+
+    <!-- РОБОТНИКИ ПОД ВИДЕО -->
+    <div class="workers-box">
+        <h2>Роботники</h2>
+        <div class="workers-images">
+            <div class="worker-card">
+                <img src="team1.jpg" alt="Роботник 1">
+                <p>Роботник 1</p>
+            </div>
+
+            <div class="worker-card">
+                <img src="team2.jpg" alt="Роботник 2">
+                <p>Роботник 2</p>
+            </div>
+        </div>
     </div>
 </div>
 
