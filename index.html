@@ -6,6 +6,10 @@
 <title>22 Studio</title>
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -26,21 +30,27 @@ header {
 }
 
 .container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     padding: 40px 20px;
 }
 
 button {
     background: #ff0055;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 22px;
     color: white;
     border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
 button:hover {
     background: #ff3377;
+    transform: translateY(-2px);
+    box-shadow: 0 0 16px rgba(255, 0, 85, 0.35);
 }
 
 footer {
@@ -87,33 +97,33 @@ footer {
     100% { opacity: 0; transform: scale(1.2); }
 }
 
-/* ВЕРХНИЙ БЛОК */
-.top-section {
+/* ИСТОРИЯ */
+.story-section {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    gap: 40px;
-    margin: 40px 0 50px;
-    flex-wrap: wrap;
+    margin: 40px 0 30px;
 }
 
-/* ИСТОРИЯ */
 .story-box {
     background: linear-gradient(180deg, #1b1b1b 0%, #151515 100%);
-    padding: 28px;
+    padding: 24px 30px;
     border-radius: 18px;
-    width: 700px;
-    max-width: 95%;
+    width: 100%;
+    max-width: 1180px;
+    min-height: 320px;
     box-shadow:
         0 0 12px rgba(255,255,255,0.06),
         0 0 30px rgba(0,0,0,0.35);
     text-align: left;
     border: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .story-box h2 {
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     font-size: 30px;
     letter-spacing: 3px;
     color: #ff2a2a;
@@ -122,9 +132,9 @@ footer {
 }
 
 .story-box p {
-    margin: 0 0 18px 0;
-    font-size: 18px;
-    line-height: 1.75;
+    margin: 0 0 12px 0;
+    font-size: 17px;
+    line-height: 1.55;
     color: #f2f2f2;
 }
 
@@ -137,23 +147,31 @@ footer {
     font-weight: bold;
 }
 
+/* БЛОК ПОД ИСТОРИЕЙ */
+.content-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    align-items: stretch;
+    margin: 0 0 50px;
+}
+
+.left-column,
 .right-column {
     display: flex;
     flex-direction: column;
     gap: 25px;
-    align-items: center;
+    height: 100%;
 }
 
-/* NEW PATCH / OLD PROJECT / РОБОТНИКИ */
+/* ОБЩИЕ БЛОКИ */
 .patch-box,
 .workers-box,
 .old-project-box {
     background: #1c1c1c;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 15px;
-    width: 700px;
-    max-width: 95%;
+    padding: 24px;
+    border-radius: 18px;
+    width: 100%;
     box-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
 
@@ -179,24 +197,48 @@ footer {
     text-shadow: 0 0 12px rgba(255, 213, 74, 0.25);
 }
 
-.patch-images,
-.workers-images {
+/* NEW PATCH */
+.patch-box {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+}
+
+.patch-box h2 {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 8px;
+}
+
+.patch-images {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
-    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1100px;
+    align-items: stretch;
 }
 
 .patch-images img {
     width: 100%;
-    max-width: 320px;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
+    height: auto;
+    display: block;
     border-radius: 14px;
     background: #000;
     box-shadow: 0 0 16px rgba(0,0,0,0.45);
     transition: transform 0.3s, box-shadow 0.3s;
+    object-fit: cover;
+}
+
+/* WORKERS */
+.workers-images {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .workers-images img {
@@ -210,21 +252,36 @@ footer {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
+/* OLD PROJECT */
+.old-project-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.old-project-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .old-project-image {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
+    flex: 1;
 }
 
 .old-project-image img {
     width: 100%;
-    max-width: 520px;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
+    height: auto;
+    display: block;
     border-radius: 14px;
     background: #000;
     box-shadow: 0 0 16px rgba(0,0,0,0.45);
     transition: transform 0.3s, box-shadow 0.3s;
+    object-fit: cover;
 }
 
 .patch-images img:hover,
@@ -232,6 +289,17 @@ footer {
 .old-project-image img:hover {
     transform: scale(1.03);
     box-shadow: 0 0 22px rgba(255, 42, 42, 0.18);
+}
+
+.old-project-button {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    margin-top: auto;
+}
+
+.old-project-button button {
+    width: 100%;
 }
 
 .worker-card {
@@ -266,7 +334,7 @@ footer {
 .compare-container {
     position: relative;
     width: 100%;
-    max-width: 500px;
+    max-width: 100%;
     margin: auto;
     overflow: hidden;
     border-radius: 16px;
@@ -274,6 +342,7 @@ footer {
     -webkit-user-select: none;
     background: #111;
     box-shadow: 0 0 20px rgba(0,0,0,0.35);
+    aspect-ratio: 16 / 9;
 }
 
 .compare-container * {
@@ -283,9 +352,11 @@ footer {
 
 .compare-img {
     width: 100%;
+    height: 100%;
     display: block;
     pointer-events: none;
     -webkit-user-drag: none;
+    object-fit: cover;
 }
 
 .compare-overlay {
@@ -383,6 +454,19 @@ footer {
     text-shadow: 0 0 12px rgba(255, 42, 42, 0.45);
 }
 
+.video-container {
+    margin: 0 auto 40px auto;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.video-container video {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    background: black;
+}
+
 /* КИБЕРПАНК НАДПИСЬ */
 .cyber-release {
     position: relative;
@@ -478,20 +562,18 @@ footer {
     100% { transform: translate(1px, -2px); }
 }
 
-.video-container {
-    margin: 0 auto 40px auto;
-    max-width: 900px;
-    width: 100%;
-}
-
-.video-container video {
-    width: 100%;
-    border-radius: 16px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    background: black;
-}
-
 /* адаптив */
+@media (max-width: 1100px) {
+    .content-row {
+        grid-template-columns: 1fr;
+    }
+
+    .patch-images {
+        grid-template-columns: 1fr;
+        max-width: 700px;
+    }
+}
+
 @media (max-width: 900px) {
     .grid {
         grid-template-columns: 1fr;
@@ -506,36 +588,18 @@ footer {
         font-size: 26px;
     }
 
-    .top-section {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .right-column {
-        width: 100%;
-    }
-
-    .story-box,
-    .patch-box,
-    .workers-box,
-    .old-project-box {
-        width: 95%;
-    }
-
-    .patch-images,
     .workers-images {
         flex-direction: column;
         align-items: center;
     }
 
-    .patch-images img,
-    .workers-images img,
-    .old-project-image img {
-        max-width: 100%;
-    }
-
     .workers-images img {
         max-width: 180px;
+    }
+
+    .story-box {
+        min-height: auto;
+        padding: 22px 20px;
     }
 
     .story-box h2 {
@@ -544,6 +608,7 @@ footer {
 
     .story-box p {
         font-size: 16px;
+        line-height: 1.5;
     }
 
     .cyber-release {
@@ -579,8 +644,7 @@ footer {
     <h1>Добро пожаловать в 22 Studio</h1>
     <p>Мы делаем лучшие (почти) игры в мире 😎</p>
 
-    <div class="top-section">
-
+    <div class="story-section">
         <div class="story-box">
             <h2>История 22 Studio</h2>
 
@@ -592,8 +656,10 @@ footer {
 
             <p>Они решили на эти деньги основать студию, которая будет делать игры, и назвать её в честь сгоревшего бара <span class="story-accent">«22 Studio»</span>. Так и появилось название — <span class="story-accent">«22 Studio»</span>.</p>
         </div>
+    </div>
 
-        <div class="right-column">
+    <div class="content-row">
+        <div class="left-column">
             <div class="patch-box">
                 <h2>NEW PATCH</h2>
                 <div class="patch-images">
@@ -601,15 +667,21 @@ footer {
                     <img src="photo_2026-03-20_17-29-04.jpg" alt="Patch 2.00 новый контент">
                 </div>
             </div>
+        </div>
 
+        <div class="right-column">
             <div class="old-project-box">
-                <h2>OLD PROJECT</h2>
-                <div class="old-project-image">
-                    <img src="photo_2026-03-20_20-07-55.jpg" alt="Old Project">
+                <div class="old-project-content">
+                    <h2>OLD PROJECT</h2>
+                    <div class="old-project-image">
+                        <img src="photo_2026-03-20_20-07-55.jpg" alt="Old Project">
+                    </div>
+                    <a class="old-project-button" href="https://www.roblox.com/games/134269520852600/Snaddes-Surprise" target="_blank" rel="noopener noreferrer">
+                        <button type="button">Открыть OLD PROJECT</button>
+                    </a>
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="compare-section">
